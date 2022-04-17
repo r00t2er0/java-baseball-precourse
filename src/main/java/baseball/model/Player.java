@@ -7,6 +7,10 @@ public class Player {
     private GameNumber gameNumber;
 
     public Player() {
+        initGameNumber();
+    }
+
+    public void initGameNumber() {
         this.gameNumber = new GameNumber(new ArrayList<>());
     }
 
@@ -17,9 +21,5 @@ public class Player {
 
     public List<Integer> getNumber() {
         return gameNumber.getNumbers();
-    }
-
-    public void initGameNumber() {
-        this.gameNumber = new GameNumber(new ArrayList<>());
     }
 }
