@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class GameNumber {
+    private final static int NUMBER_SIZE = 3;
     private List<Integer> numbers;
 
     public GameNumber() {
@@ -15,9 +16,16 @@ public class GameNumber {
     }
 
     public void setNumbers(String inputNumber) {
+        validateSize(inputNumber);
         String[] numbers = inputNumber.split("");
         for(String number : numbers) {
             this.numbers.add(Integer.parseInt(number));
+        }
+    }
+
+    public void validateSize(String number) {
+        if(number.length() != NUMBER_SIZE) {
+            throw new IllegalArgumentException();
         }
     }
 
