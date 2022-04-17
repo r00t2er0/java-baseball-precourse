@@ -15,8 +15,7 @@ public class Player {
     }
 
     public void setNumber(String inputNumber) {
-        String[] number = inputNumber.split("");
-        this.gameNumber.setNumbers(number);
+        this.gameNumber.setNumbers(inputNumber);
     }
 
     public List<Integer> getNumber() {

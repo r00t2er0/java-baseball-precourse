@@ -14,7 +14,8 @@ public class GameNumber {
         this.numbers = numbers;
     }
 
-    public void setNumbers(String[] numbers) {
+    public void setNumbers(String inputNumber) {
+        String[] numbers = inputNumber.split("");
         for(String number : numbers) {
             this.numbers.add(Integer.parseInt(number));
         }
