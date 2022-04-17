@@ -5,6 +5,8 @@ import baseball.model.GameNumber;
 import baseball.model.Player;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -12,31 +14,14 @@ public class Application {
         Computer computer = new Computer();
 
         while(true) {
-            int strike = 0;
-            int ball = 0;
-
             System.out.printf("숫자를 입력해주세요: ");
             player.setNumber(Console.readLine());
 
-            for(int i=0; i<GameNumber.NUMBER_SIZE; i++) {
-                if(player.getNumber().contains(computer.getNumber().get(i))) {
-                    if(player.getNumber().get(i).equals(computer.getNumber().get(i))) {
-                        strike++;
-                    } else {
-                        ball++;
-                    }
-                }
-            }
-
-            if(strike == 0 && ball == 0) {
-                System.out.println("낫싱");
-            } else {
-                System.out.println(ball + "볼 " + strike + "스트라이크");
-            }
+            int result = compareGameNumber(player.getNumber(), computer.getNumber());
 
             player.initGameNumber();
 
-            if(strike == 3) {
+            if(result == 3) {
                 System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
                 System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
                 int selectNumber = Integer.parseInt(Console.readLine());
@@ -47,5 +32,38 @@ public class Application {
                 }
             }
         }
+    }
+
+    public static int compareGameNumber(List<Integer> playerNumber, List<Integer> computerNumber) {
+        int strike = 0;
+        int ball = 0;
+        for(int i=0; i<GameNumber.NUMBER_SIZE; i++) {
+            if(playerNumber.contains(computerNumber.get(i))) {
+                if(playerNumber.get(i).equals(computerNumber.get(i))) {
+                    strike++;
+                } else {
+                    ball++;
+                }
+            }
+        }
+        printResult(ball, strike);
+
+        return strike;
+    }
+
+    public static void printResult(int ball, int strike) {
+        if(isNothing(ball, strike)) {
+            System.out.println("낫싱");
+        }
+        if(!isNothing(ball, strike)) {
+            System.out.println(ball + "볼 " + strike + "스트라이크");
+        }
+    }
+
+    public static boolean isNothing(int ball, int strike) {
+        if(strike == 0 && ball == 0) {
+            return true;
+        }
+        return false;
     }
 }
