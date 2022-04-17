@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameNumber {
-    private final static int NUMBER_SIZE = 3;
+    public final static int NUMBER_SIZE = 3;
     private final static int MIN_RANGE = 0;
     private final static int MAX_RANGE = 9;
     private List<Integer> numbers;
