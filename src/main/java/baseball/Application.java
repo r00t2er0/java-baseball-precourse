@@ -51,19 +51,12 @@ public class Application {
         return strike;
     }
 
-    public static void printResult(int ball, int strike) {
-        if(isNothing(ball, strike)) {
-            System.out.println("낫싱");
-        }
-        if(!isNothing(ball, strike)) {
-            System.out.println(ball + "볼 " + strike + "스트라이크");
-        }
-    }
-
-    public static boolean isNothing(int ball, int strike) {
+    public static boolean printResult(int ball, int strike) {
         if(strike == 0 && ball == 0) {
+            System.out.println("낫싱");
             return true;
         }
+        System.out.println(ball + "볼 " + strike + "스트라이크");
         return false;
     }
 }
