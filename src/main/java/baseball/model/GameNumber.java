@@ -12,20 +12,21 @@ public class GameNumber {
     private List<Integer> numbers;
 
     public GameNumber() {
-        this.numbers = pickNumbers();
+        List<Integer> randomNumbers = new ArrayList<>();
+        while(randomNumbers.size() < NUMBER_SIZE) {
+            pickNumbers(randomNumbers);
+        }
+        this.numbers = randomNumbers;
     }
 
     public GameNumber(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
-    public List<Integer> pickNumbers() {
-        List<Integer> randomNumbers = new ArrayList<>();
-        while(randomNumbers.size() < NUMBER_SIZE) {
-            int number = Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE);
-            if(!randomNumbers.contains(number)) {
-                randomNumbers.add(number);
-            }
+    public List<Integer> pickNumbers(List<Integer> randomNumbers) {
+        int number = Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE);
+        if(!randomNumbers.contains(number)) {
+            randomNumbers.add(number);
         }
         return randomNumbers;
     }
