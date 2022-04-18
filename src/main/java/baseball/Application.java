@@ -19,11 +19,7 @@ public class Application {
             player.setNumber(Console.readLine());
 
             compareGameNumber(player.getNumber(), computer.getNumber(), gameResult);
-
-            if(gameResult.getStrike() == 3) {
-                selectGame(gameResult);
-                computer = new Computer();
-            }
+            endGame(gameResult, computer);
             player.initGameNumber();
             gameResult.initNumber();
         }
@@ -58,6 +54,13 @@ public class Application {
         }
         System.out.println(ball + "볼 " + strike + "스트라이크");
         return false;
+    }
+
+    public static void endGame(GameResult gameResult, Computer computer) {
+        if(gameResult.getStrike() == 3) {
+            selectGame(gameResult);
+            computer.initGameNumber();
+        }
     }
 
     public static void selectGame(GameResult gameResult) {
