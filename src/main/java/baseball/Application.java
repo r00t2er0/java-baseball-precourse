@@ -2,6 +2,7 @@ package baseball;
 
 import baseball.model.Computer;
 import baseball.model.GameNumber;
+import baseball.model.GameResult;
 import baseball.model.Player;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -35,20 +36,24 @@ public class Application {
     }
 
     public static int compareGameNumber(List<Integer> playerNumber, List<Integer> computerNumber) {
-        int strike = 0;
-        int ball = 0;
+        GameResult gameResult = new GameResult();
         for(int i=0; i<GameNumber.NUMBER_SIZE; i++) {
             if(playerNumber.contains(computerNumber.get(i))) {
-                if(playerNumber.get(i).equals(computerNumber.get(i))) {
-                    strike++;
-                } else {
-                    ball++;
-                }
+                calculateGameNumber(playerNumber.get(i), computerNumber.get(i), gameResult);
             }
         }
-        printResult(ball, strike);
+        printResult(gameResult.getBall(), gameResult.getStrike());
 
-        return strike;
+        return gameResult.getStrike();
+    }
+
+    public static boolean calculateGameNumber(int playerNumber, int computerNumber, GameResult gameResult) {
+        if(playerNumber == computerNumber) {
+            gameResult.plusStrike();
+            return true;
+        }
+        gameResult.plusBall();
+        return false;
     }
 
     public static boolean printResult(int ball, int strike) {
