@@ -10,41 +10,36 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         Player player = new Player();
         Computer computer = new Computer();
+        GameResult gameResult = new GameResult();
 
-        while(true) {
+        while(gameResult.isGameStart()) {
             System.out.printf("숫자를 입력해주세요: ");
             player.setNumber(Console.readLine());
 
-            int result = compareGameNumber(player.getNumber(), computer.getNumber());
+            compareGameNumber(player.getNumber(), computer.getNumber(), gameResult);
 
-            player.initGameNumber();
-
-            if(result == 3) {
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-                System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-                int selectNumber = Integer.parseInt(Console.readLine());
-                if(selectNumber == 2) {
-                    break;
-                } else {
-                    computer = new Computer();
-                }
+            if(gameResult.getStrike() == 3) {
+                selectGame(gameResult);
+                computer = new Computer();
             }
+            player.initGameNumber();
+            gameResult.initNumber();
         }
     }
 
-    public static int compareGameNumber(List<Integer> playerNumber, List<Integer> computerNumber) {
-        GameResult gameResult = new GameResult();
+    public static void compareGameNumber(
+            List<Integer> playerNumber,
+            List<Integer> computerNumber,
+            GameResult gameResult
+    ) {
         for(int i=0; i<GameNumber.NUMBER_SIZE; i++) {
             if(playerNumber.contains(computerNumber.get(i))) {
                 calculateGameNumber(playerNumber.get(i), computerNumber.get(i), gameResult);
             }
         }
         printResult(gameResult.getBall(), gameResult.getStrike());
-
-        return gameResult.getStrike();
     }
 
     public static boolean calculateGameNumber(int playerNumber, int computerNumber, GameResult gameResult) {
@@ -63,5 +58,14 @@ public class Application {
         }
         System.out.println(ball + "볼 " + strike + "스트라이크");
         return false;
+    }
+
+    public static void selectGame(GameResult gameResult) {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        int selectNumber = Integer.parseInt(Console.readLine());
+        if(selectNumber == 2) {
+            gameResult.setGameStart(false);
+        }
     }
 }
