@@ -17,6 +17,7 @@ public class Application {
         while(gameResult.isGameStart()) {
             inputNumber(player);
             compareGameNumber(player.getNumber(), computer.getNumber(), gameResult);
+            printResult(gameResult.getBall(), gameResult.getStrike());
             endGame(gameResult, computer);
             player.initGameNumber();
             gameResult.initStrikeAndBall();
@@ -36,7 +37,6 @@ public class Application {
         for(int i=0; i<GameNumber.NUMBER_SIZE; i++) {
             includeNumber(playerNumber, computerNumber, gameResult, i);
         }
-        printResult(gameResult.getBall(), gameResult.getStrike());
     }
 
     public static void includeNumber(
