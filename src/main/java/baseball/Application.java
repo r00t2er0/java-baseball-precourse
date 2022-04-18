@@ -34,11 +34,20 @@ public class Application {
             GameResult gameResult
     ) {
         for(int i=0; i<GameNumber.NUMBER_SIZE; i++) {
-            if(playerNumber.contains(computerNumber.get(i))) {
-                calculateGameNumber(playerNumber.get(i), computerNumber.get(i), gameResult);
-            }
+            includeNumber(playerNumber, computerNumber, gameResult, i);
         }
         printResult(gameResult.getBall(), gameResult.getStrike());
+    }
+
+    public static void includeNumber(
+            List<Integer> playerNumber,
+            List<Integer> computerNumber,
+            GameResult gameResult,
+            int i
+    ) {
+        if(playerNumber.contains(computerNumber.get(i))) {
+            calculateGameNumber(playerNumber.get(i), computerNumber.get(i), gameResult);
+        }
     }
 
     public static boolean calculateGameNumber(int playerNumber, int computerNumber, GameResult gameResult) {
