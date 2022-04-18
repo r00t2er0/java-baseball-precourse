@@ -6,11 +6,11 @@ public class GameResult {
     private boolean gameStart;
 
     public GameResult() {
-        initNumber();
+        initStrikeAndBall();
         this.gameStart = true;
     }
 
-    public void initNumber() {
+    public void initStrikeAndBall() {
         this.ball = 0;
         this.strike = 0;
     }

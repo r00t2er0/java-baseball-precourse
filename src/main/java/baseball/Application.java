@@ -19,7 +19,7 @@ public class Application {
             compareGameNumber(player.getNumber(), computer.getNumber(), gameResult);
             endGame(gameResult, computer);
             player.initGameNumber();
-            gameResult.initNumber();
+            gameResult.initStrikeAndBall();
         }
     }
 
