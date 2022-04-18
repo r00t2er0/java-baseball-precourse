@@ -1,12 +1,18 @@
 package baseball.model;
 
 public class GameResult {
-    private int strike;
     private int ball;
+    private int strike;
+    private boolean gameStart;
 
     public GameResult() {
-        this.strike = 0;
+        initNumber();
+        this.gameStart = true;
+    }
+
+    public void initNumber() {
         this.ball = 0;
+        this.strike = 0;
     }
 
     public int getBall() {
@@ -23,6 +29,14 @@ public class GameResult {
 
     public void setStrike(int strike) {
         this.strike = strike;
+    }
+
+    public boolean isGameStart() {
+        return gameStart;
+    }
+
+    public void setGameStart(boolean gameStart) {
+        this.gameStart = gameStart;
     }
 
     public void plusStrike() {
