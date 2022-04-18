@@ -6,6 +6,10 @@ public class Computer extends Player{
     private GameNumber gameNumber;
 
     public Computer() {
+        initGameNumber();
+    }
+
+    public void initGameNumber() {
         this.gameNumber = new GameNumber();
     }
 
