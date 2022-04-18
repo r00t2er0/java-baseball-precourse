@@ -15,14 +15,17 @@ public class Application {
         GameResult gameResult = new GameResult();
 
         while(gameResult.isGameStart()) {
-            System.out.printf("숫자를 입력해주세요: ");
-            player.setNumber(Console.readLine());
-
+            inputNumber(player);
             compareGameNumber(player.getNumber(), computer.getNumber(), gameResult);
             endGame(gameResult, computer);
             player.initGameNumber();
             gameResult.initNumber();
         }
+    }
+
+    public static void inputNumber(Player player) {
+        System.out.printf("숫자를 입력해주세요: ");
+        player.setNumber(Console.readLine());
     }
 
     public static void compareGameNumber(
